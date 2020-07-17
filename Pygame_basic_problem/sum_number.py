@@ -1,38 +1,29 @@
 def sum_numbers(text: str) -> int:
     # your code here
-    textArr = text.split(" ")
-    arr = []
-
-    for i in textArr:
-        print(i, type(i))
-        if type(i) == "int":
-            print(i)
-            arr.append(i)
-
-    if len(arr) == 1:
-        return int(arr[0])
-    elif len(arr) == 2:
-        return int(arr[0]) + int(arr[1])
+    items = text.split(" ")
+    result = 0
+    for i in items:
+        if i.isdigit() == True:
+            result += int(i)
+    return result
 
 
-print(sum_numbers("1 2"))
+if __name__ == "__main__":
+    print("Example:")
+    print(sum_numbers("hi"))
 
-# if __name__ == "__main__":
-#     print("Example:")
-#     print(sum_numbers("hi"))
-
-#     # These "asserts" are used for self-checking and not for an auto-testing
-#     assert sum_numbers("hi") == 0
-#     assert sum_numbers("who is 1st here") == 0
-#     assert sum_numbers("my numbers is 2") == 2
-#     assert (
-#         sum_numbers(
-#             "This picture is an oil on canvas "
-#             "painting by Danish artist Anna "
-#             "Petersen between 1845 and 1910 year"
-#         )
-#         == 3755
-#     )
-#     assert sum_numbers("5 plus 6 is") == 11
-#     assert sum_numbers("") == 0
-#     print("Coding complete? Click 'Check' to earn cool rewards!")
+    # These "asserts" are used for self-checking and not for an auto-testing
+    assert sum_numbers("hi") == 0
+    assert sum_numbers("who is 1st here") == 0
+    assert sum_numbers("my numbers is 2") == 2
+    assert (
+        sum_numbers(
+            "This picture is an oil on canvas "
+            "painting by Danish artist Anna "
+            "Petersen between 1845 and 1910 year"
+        )
+        == 3755
+    )
+    assert sum_numbers("5 plus 6 is") == 11
+    assert sum_numbers("") == 0
+    print("Coding complete? Click 'Check' to earn cool rewards!")
