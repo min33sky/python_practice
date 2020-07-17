@@ -85,9 +85,15 @@ while running:
     enemy_rect.left = enemy_x_pos
     enemy_rect.top = enemy_y_pos
 
+    # 캐릭터와 충돌
     if character_rect.colliderect(enemy_rect):
         print("충돌!!!!")
         running = False
+
+    # 바닥에 닿을 시 다른 똥이 내려온다.
+    if enemy_y_pos > screen_height - enemy_height:
+        enemy_y_pos = 0
+        enemy_x_pos = randint(0, screen_width - enemy_width)
 
     # 5. 화면에 그리기
     screen.blit(background, (0, 0))
