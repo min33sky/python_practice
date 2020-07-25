@@ -1,3 +1,5 @@
-let str = 'h1h1x`3 abc def';
+let str1 = 'ab';
+let str2 = 'basd';
+let str3 = '';
 
-console.log(str.replace(/^(\S+)\s(.*)/, '$2$1'));
+console.log([str1, str2, str3].sort((a, b) => b.length - a.length));
