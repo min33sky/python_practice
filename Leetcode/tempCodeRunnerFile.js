@@ -1,3 +1,7 @@
-console.log(longestPalindrome('cbbd'));
-console.log(longestPalindrome('a'));
-console.log(longestPalindrome('aba'));
+ {};
+  //   for (let i = 0; i < nums.length; i++) {
+  //     if (hash[target - nums[i]] !== undefined) {
+  //       return [i, hash[target - nums[i]]];
+  //     }
+  //     hash[nums[i]] = i;
+  //   }

@@ -1,3 +1,4 @@
-arr = [2, 7, 11, 15]
+dict = {1: 0, 3: 1, 4: 2}
 
-print([9 - item for item in arr])
+print(dict[2])
+
