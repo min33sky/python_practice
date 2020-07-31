@@ -16,27 +16,27 @@ function ListNode(val, next) {
  * @return {boolean}
  */
 var isPalindrome = function (head) {
-  if (head === null || head.next === null) return true;
+  let rev = null;
   let slow = head;
   let fast = head;
 
-  while (fast.next !== null && fast.next.next !== null) {
-    slow = slow.next;
+  while (fast && fast.next) {
     fast = fast.next.next;
+    // 다중 할당을 통해서 같은 값을 참조 하는 것을 막는다
+    [rev, rev.next, slow] = [slow, rev, slow.next];
   }
-};
 
-function reverseList(head) {
-  let pre = null;
-  let next = null;
-  while (head !== null) {
-    next = head.next;
-    head.next = pre;
-    pre = head;
-    head = next;
+  // 노드가 홀수 일때는 palindrom에서 정 가운데 노드는 제외한다.
+  if (fast) {
+    slow = slow.next;
   }
-  return pre;
-}
+
+  while (rev && rev.val === slow.val) {
+    [slow, rev] = [slow.next, rev.next];
+  }
+
+  return !rev;
+};
 
 const node1 = new ListNode(2);
 const node2 = new ListNode(1);

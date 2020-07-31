@@ -4,12 +4,14 @@
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-  //   검색을 위해서 배열을 해쉬테이블로 변환
+  // 검색을 위해서 배열을 해쉬테이블로 변환
   const hash = {};
   for (let i = 0; i < nums.length; i++) {
+    // 해쉬 테이블에 target - nums[i] 값이 존재 할 때 종료
     if (hash[target - nums[i]] !== undefined) {
       return [hash[target - nums[i]], i];
     }
+    // 해쉬 테이블에 추가
     hash[nums[i]] = i;
   }
   return [];

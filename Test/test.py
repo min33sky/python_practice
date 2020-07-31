@@ -1,4 +1,5 @@
-dict = {1: 0, 3: 1, 4: 2}
+arr = [1, 1, 2, 6]
 
-print(dict[2])
+for i in range(len(arr) - 1, 0 - 1, -1):
+    print(i)
 

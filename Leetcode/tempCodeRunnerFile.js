@@ -1,7 +1,3 @@
- {};
-  //   for (let i = 0; i < nums.length; i++) {
-  //     if (hash[target - nums[i]] !== undefined) {
-  //       return [i, hash[target - nums[i]]];
-  //     }
-  //     hash[nums[i]] = i;
-  //   }
+ // if (i > 0 && sorted[i] === sorted[i - 1]) {
+    //   continue;
+    // }
