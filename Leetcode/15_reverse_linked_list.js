@@ -10,31 +10,33 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-// var reverseList = function (head) {
-//   function reverse(node, prev = null) {
-//     if (!node) {
-//       return prev;
-//     }
+var reverseList = function (head) {
+  // 리스트를 순회하는 재귀 함수
+  function reverse(current, prev = null) {
+    // 리스트 순회가 끝났으므로 가장 마지막 노드를 리턴한다.
+    if (!current) return prev;
 
-//     [node.next, next] = [prev, node.next];
+    // 노드를 역순으로 뒤집는다. (prev <- current)
+    [current.next, prev, current] = [prev, current, current.next];
 
-//     return reverse(next, node);
-//   }
+    // 재귀 호출
+    return reverse(current, prev);
+  }
 
-//   return reverse(head);
-// };
+  return reverse(head);
+};
 
 /**
  * 반복으로 풀기
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseList = function (head) {
-  let [prev, current] = [null, head];
+// var reverseList = function (head) {
+//   let [prev, current] = [null, head];
 
-  while (current) {
-    [current.next, current, prev] = [prev, current.next, current];
-  }
+//   while (current) {
+//     [current.next, current, prev] = [prev, current.next, current];
+//   }
 
-  return prev;
-};
+//   return prev;
+// };
