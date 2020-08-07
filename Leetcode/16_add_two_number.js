@@ -18,7 +18,8 @@ function ListNode(val, next) {
 var addTwoNumbers = function (l1, l2) {
   let root = new ListNode(0);
   let head = root;
-  let carry = 0;
+  let carry = 0; // 자리 올림 수
+
   while (l1 || l2 || carry) {
     let sum = 0;
 
@@ -26,11 +27,13 @@ var addTwoNumbers = function (l1, l2) {
       sum += l1.val;
       l1 = l1.next;
     }
+
     if (l2) {
       sum += l2.val;
       l2 = l2.next;
     }
 
+    // 몫은 자리올림, 나머지는 노드 값
     let val = parseInt((sum + carry) % 10);
     carry = parseInt((sum + carry) / 10);
 

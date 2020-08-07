@@ -9,24 +9,23 @@ class ListNode:
 
 # 반복 방식
 def reverseList(head: ListNode) -> ListNode:
-    prev, node = None, head
+    prev, current = None, head
 
-    while node:
-        next, node.next = node.next, prev
-        node, prev = next, node
+    while current:
+        current.next, prev, current = prev, current, current.next
 
     return prev
 
 
 # 재귀 방식
 # def reverseList(head: ListNode) -> ListNode:
-#     def reverse(node: ListNode, prev: ListNode = None):
-#         if not node:
+#     def reverse(current: ListNode, prev: ListNode = None):
+#         if not current:
 #             return prev
 
-#         next, node.next = node.next, prev
+#         current.next, next = prev, current.next
 
-#         return reverse(next, node)
+#         return reverse(next, current)
 
 #     return reverse(head)
 

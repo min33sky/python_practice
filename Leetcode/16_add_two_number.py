@@ -11,8 +11,10 @@ class ListNode:
 
 def addTwoNumbers(l1: ListNode, l2: ListNode) -> ListNode:
 
-    # 두 리스트의 합을 담을 리스트의 노드
+    # 두 리스트의 합을 담을 연결 리스트의 임시 시작 노드
     root = head = ListNode(0)
+
+    # 자리 올림 수
     carry = 0
 
     while l1 or l2 or carry:
@@ -25,11 +27,12 @@ def addTwoNumbers(l1: ListNode, l2: ListNode) -> ListNode:
             sum += l2.val
             l2 = l2.next
 
-        # (몫, 나머지) : 몫은 자리올림 수
+        # (몫, 나머지) : 몫은 자리올림 수, 나머지는 노드의 값
         carry, val = divmod(sum + carry, 10)
         head.next = ListNode(val)
         head = head.next
 
+    # 임시 시작 노드의 다음 노드가 연결 리스트의 헤드 노드이다.
     return root.next
 
 
