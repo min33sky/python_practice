@@ -17,9 +17,9 @@ while True:
         break
 
     # K로 나누기
-    result += 1
     n //= k
+    result += 1
 
-
+# 나머지 값이 1이 될때까지 뺀 횟수를 더한다
 result += n - 1
 print(result)
