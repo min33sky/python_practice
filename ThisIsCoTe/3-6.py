@@ -8,7 +8,6 @@ data = list(map(int, input().split()))
 
 data.sort()  # 오름차순 정렬
 
-
 result = 0  # 총 그룹의 수
 count = 0  # 현재 그룹 인원 수
 
