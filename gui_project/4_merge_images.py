@@ -1,12 +1,16 @@
+import os
 import tkinter.ttk as ttk
 import tkinter.messagebox as msgbox
 from tkinter import *  # __all__에 정의하지 않은 모듈은 임포트를 따로 해야한다.
 from tkinter import filedialog
+from PIL import Image  # pip install Pillow
 
 root = Tk()
 root.title("Nado GUI")
 
 # 파일 추가
+
+
 def add_file():
     files = filedialog.askopenfilenames(
         title="이미지 파일을 선택하세요",
@@ -38,6 +42,40 @@ def browse_dest_path():
     )  # Entry는 (0, END), TextWidget은 ('1.0', END)
 
 
+# 이미지 통합
+def merge_image():
+    # print(list_file.get(0, END))  # 모든 파일 목록을 가져오기
+    images = [Image.open(x) for x in list_file.get(0, END)]
+    # size -> size[0] : width, size[1] : height
+    # width = [x.size[0] for x in images]
+    # height = [x.size[1] for x in images]
+
+    width, height = zip(*(x.size for x in images))
+
+    # 최대 넓이, 전체 높이 구하기
+    max_width, total_height = max(width), sum(height)
+
+    # 스케치북 준비
+    result_img = Image.new('RGB', (max_width, total_height), (255, 255, 255))
+    y_offset = 0
+
+    # for img in images:
+    #     result_img.paste(img, (0, y_offset))
+    #     y_offset += img.size[1]
+
+    for idx, img in enumerate(images):
+        result_img.paste(img, (0, y_offset))
+        y_offset += img.size[1]
+
+        progress = ((idx + 1) / len(images)) * 100
+        p_var.set(progress)
+        progress_bar.update()
+
+    dest_path = os.path.join(txt_dest_path.get(), "result.jpg")
+    result_img.save(dest_path)
+    msgbox.showinfo("알림", "작업이 완료되었습니다.")
+
+
 # 프로그램 시작
 def start():
     # 파일 유무 체크
@@ -51,6 +89,9 @@ def start():
         return
 
     print(cmb_format.get(), cmb_space.get(), cmb_width.get())
+
+    # 이미지 통합
+    merge_image()
 
 
 # 파일 프레임 (파일 추가, 선택 삭제)
@@ -86,9 +127,11 @@ path_frame = LabelFrame(root, text="저장경로")
 path_frame.pack(fill="x", padx=5, pady=5, ipady=5)
 
 txt_dest_path = Entry(path_frame)
-txt_dest_path.pack(side="left", fill="x", expand=True, ipady=4, padx=5, pady=5)  # 높이 변경
+txt_dest_path.pack(side="left", fill="x", expand=True,
+                   ipady=4, padx=5, pady=5)  # 높이 변경
 
-btn_dest_path = Button(path_frame, text="찾아보기", width=10, command=browse_dest_path)
+btn_dest_path = Button(path_frame, text="찾아보기",
+                       width=10, command=browse_dest_path)
 btn_dest_path.pack(side="right", padx=5, pady=5)
 
 # 옵션 프레임
@@ -102,7 +145,8 @@ lbl_width.pack(side="left", padx=5, pady=5)
 
 # 가로 넓이 콤보
 opt_width = ["원본유지", "1024", "800", "640"]
-cmb_width = ttk.Combobox(frame_option, state="readonly", values=opt_width, width=10)
+cmb_width = ttk.Combobox(frame_option, state="readonly",
+                         values=opt_width, width=10)
 cmb_width.current(0)
 cmb_width.pack(side="left", padx=5, pady=5)
 
@@ -113,7 +157,8 @@ lbl_space.pack(side="left", padx=5, pady=5)
 
 # 간격 옵션 콤보
 opt_width = ["없음", "좁게", "보통", "넓게"]
-cmb_space = ttk.Combobox(frame_option, state="readonly", values=opt_width, width=10)
+cmb_space = ttk.Combobox(frame_option, state="readonly",
+                         values=opt_width, width=10)
 cmb_space.current(0)
 cmb_space.pack(side="left", padx=5, pady=5)
 
@@ -124,7 +169,8 @@ lbl_space.pack(side="left", padx=5, pady=5)
 
 # 파일 포맷 옵션 콤보
 opt_width = ["PNG", "JPG", "BMP"]
-cmb_format = ttk.Combobox(frame_option, state="readonly", values=opt_width, width=10)
+cmb_format = ttk.Combobox(
+    frame_option, state="readonly", values=opt_width, width=10)
 cmb_format.current(0)
 cmb_format.pack(side="left", padx=5, pady=5)
 
@@ -141,13 +187,14 @@ progress_bar.pack(fill="x", padx=5, pady=5)
 frame_run = Frame(root)
 frame_run.pack(fill="x", padx=5, pady=5, ipady=5)
 
-btn_close = Button(frame_run, padx=5, pady=5, text="닫기", width=12, command=root.quit)
+btn_close = Button(frame_run, padx=5, pady=5, text="닫기",
+                   width=12, command=root.quit)
 btn_close.pack(side="right", padx=5, pady=5)
 
-btn_start = Button(frame_run, padx=5, pady=5, text="시작", width=12, command=start)
+btn_start = Button(frame_run, padx=5, pady=5,
+                   text="시작", width=12, command=start)
 btn_start.pack(side="right", padx=5, pady=5)
 
 
 root.resizable(False, False)
 root.mainloop()
-
