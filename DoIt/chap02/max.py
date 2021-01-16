@@ -1,0 +1,30 @@
+# 시퀀스 원소의 최대값 출력하기
+
+from typing import Any, Sequence
+
+
+def max_of(a: Sequence) -> Any:
+    """시퀀스형 a 원소의 최대값을 반환"""
+    maximum = a[0]
+    for i in range(1, len(a)):
+        if a[i] > maximum:
+            maximum = a[i]
+
+    return maximum
+
+
+"""
+  이 모듈을 직접 실행할 경우에 __name__ == __main__이 된다.
+  다른 모듈에서 이 모듈을 사용할 경우에는
+  __name__은 이 모듈의 이름인 max가 된다.
+"""
+
+if __name__ == "__main__":
+    print("배열의 최대값을 구합니다.")
+    num = int(input('원소 수를 입력하세요.: '))
+    x = [None] * num  # 원소 수가 num인 리스트를 생성
+
+    for i in range(num):
+        x[i] = int(input(f'x[{i}]값을 입력하세요.: '))
+
+    print(f'최대값은 {max_of(x)}입니다.')
