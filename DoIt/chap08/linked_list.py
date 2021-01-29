@@ -138,7 +138,7 @@ class LinkedListIterator:
 
     def __next__(self) -> Any:
         if self.curernt is None:
-            return StopIteration
+            raise StopIteration
         else:
             data = self.curernt.data
             self.curernt = self.curernt.next
