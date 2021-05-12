@@ -1,4 +1,5 @@
 # 시퀀스 원소의 최대값 출력하기
+# 시퀀스형 : list, bytearray, str, tuple, bytes
 
 from typing import Any, Sequence
 
@@ -18,6 +19,8 @@ def max_of(a: Sequence) -> Any:
   다른 모듈에서 이 모듈을 사용할 경우에는
   __name__은 이 모듈의 이름인 max가 된다.
 """
+
+print('***** __name__ :', __name__)
 
 if __name__ == "__main__":
     print("배열의 최대값을 구합니다.")

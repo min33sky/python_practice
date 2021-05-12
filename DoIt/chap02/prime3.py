@@ -12,7 +12,7 @@ prime[ptr] = 3  # 3은 소수
 ptr += 1
 
 for n in range(5, 1001, 2):  # 홀수만을 대상으로 설정
-    i = 1
+    i = 1  # 짝수는 대상이 아니므로 i=0에 해당하는 2로 나눌 필요가 없다.
     while prime[i] * prime[i] <= n:
         counter += 2  # 곱셈과 나눗셈의 횟수 증가
         if n % prime[i] == 0:  # 나누어 떨어지므로 소수가 아님
